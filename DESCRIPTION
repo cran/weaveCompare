@@ -1,0 +1,26 @@
+Package: weaveCompare
+Type: Package
+Title: Equivalence and Alignment of Periodic Binary Weaving Drawdowns
+Version: 0.1.0
+Authors@R: person("Mark Joshua R.", "Secretario", email = "markjoshuasecretario@gmail.com", role = c("aut", "cre"))
+Description: Compares periodic binary weaving drawdowns using cyclic alignment,
+    primitive rectangular repeats, exact canonical representations and Hamming
+    distance on a common periodic domain. Optional reflections, axis exchange
+    and face inversion define explicit equivalence rules. Supports collection
+    distance matrices and duplicate grouping without requiring weaving design
+    software. Comparisons describe binary interlacements, not fabric mechanics
+    or cultural provenance.
+License: MIT + file LICENSE
+Depends: R (>= 3.6.0)
+Imports: stats
+Suggests: knitr, rmarkdown, testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Encoding: UTF-8
+Config/testthat/edition: 3
+RoxygenNote: 7.3.1
+NeedsCompilation: no
+Packaged: 2026-10-25 04:22:47 UTC; root
+Author: Mark Joshua R. Secretario [aut, cre]
+Maintainer: Mark Joshua R. Secretario <markjoshuasecretario@gmail.com>
+Repository: CRAN
+Date/Publication: 2026-11-08 17:50:08 UTC

@@ -1,0 +1,46 @@
+---
+title: "Comparing periodic weaving drawdowns"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Comparing periodic weaving drawdowns}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+library(weaveCompare)
+a <- outer(0:3, 0:3, function(i,j) as.integer((i-j) %% 4 < 2))
+b <- shift_drawdown(a, 2, 1)
+c <- a; c[1,1] <- 1-c[1,1]
+compare_drawdowns(a,b)[1:7]
+duplicate_drawdowns(list(twill=a, shifted=b, edited=c))
+d <- drawdown_dist(list(twill=a, shifted=b, edited=c))
+as.matrix(d)
+plot(hclust(d, method="average"), main="Synthetic structural comparisons")
+```
+
+Distance is the fraction of mismatched binary interlacements after optimal
+phase alignment on a common periodic domain. A zero distance means exact
+equivalence under the chosen rules, including repeated copies of a smaller
+unit. Similarity is one minus distance; it is not a probability.
+
+Rows represent picks; columns represent warp ends. All drafts must use the
+same viewing and bit conventions. Whole rectangular repeats are assumed.
+Cyclic comparison treats opposite edges as adjacent, which is inappropriate
+for nonperiodic borders or incomplete motifs.
+
+Reflections, axis exchange and bit inversion are disabled by default because
+they may erase meaningful directional or face distinctions. Enable them only
+when your scientific question permits those equivalences. Bit-preserving
+transpose is an algebraic operation, not automatic physical yarn relabelling.
+
+Canonical strings encode exact bits and dimensions without hash collisions.
+Pairwise distances tile primitive repeats to axis-wise least common multiples;
+no stretching, interpolation or nearest-neighbour resizing occurs.
+Exhaustive candidate search is guarded by a cell-operation budget.
+
+For WIF files, use weaveDraft::weave_draft_from_wif() and pass its returned
+object to these functions after checking orientation. No WIF parsing is done
+here. For independent validation, compare synthetic known-answer cases and
+separately permitted software exports. Current examples do not establish
+performance on community weaving collections or cultural identity.
